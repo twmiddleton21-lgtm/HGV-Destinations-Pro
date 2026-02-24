@@ -1,0 +1,19 @@
+.formGrid{display:grid; gap:.75rem}
+.label{font-size:.85rem; color: var(--muted); font-weight:800}
+textarea.input{min-height:110px; resize:vertical}
+.checkGrid{
+  display:grid; grid-template-columns: 1fr 1fr; gap:.55rem;
+}
+.check{
+  display:flex; gap:.55rem; align-items:center;
+  padding:.55rem .65rem;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+}
+.dropzone{
+  padding: .9rem;
+  border-radius: 18px;
+  border: 1px dashed rgba(255,255,255,.18);
+  background: rgba(255,255,255,.03);
+}
