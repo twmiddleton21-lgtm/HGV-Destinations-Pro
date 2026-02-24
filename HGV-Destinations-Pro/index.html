@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>HGV Destinations Pro</title>
+
+  <!-- Tailwind CDN (optional; app primarily uses custom CSS) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/destinations.css">
+  <link rel="stylesheet" href="css/submit.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/settings.css">
+
+  <meta name="theme-color" content="#0b1220">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Splash / Loading Screen -->
+  <div id="splash" class="hidden" style="min-height:100dvh; display:grid; place-items:center; padding:1.25rem">
+    <div class="card" style="width:min(560px, 100%); padding:1.2rem">
+      <div style="display:flex; align-items:center; gap:.9rem">
+        <div class="brandMark" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <path d="M3 7h11v9H3V7Z" stroke="#1b1206" stroke-width="2"/>
+            <path d="M14 10h4l3 3v3h-7v-6Z" fill="#1b1206" opacity=".15"/>
+            <path d="M14 10h4l3 3v3h-7v-6Z" stroke="#1b1206" stroke-width="2"/>
+            <circle cx="7" cy="18" r="2" fill="#1b1206"/>
+            <circle cx="17" cy="18" r="2" fill="#1b1206"/>
+          </svg>
+        </div>
+        <div>
+          <div style="font-weight:950; font-size:1.35rem; letter-spacing:-0.02em">HGV <span style="color:var(--accent)">Destinations</span> Pro</div>
+          <div class="small">Loading destinations…</div>
+        </div>
+      </div>
+
+      <div style="margin-top:1rem; padding:.9rem; border-radius:16px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); overflow:hidden">
+        <!-- Simple “animated truck” using CSS keyframes (no images needed) -->
+        <div style="position:relative; height:48px;">
+          <div id="truck" style="position:absolute; left:-90px; top:6px; width:90px; height:36px;">
+            <div style="position:absolute; left:0; top:10px; width:26px; height:18px; border-radius:6px; background: rgba(255,255,255,.9)"></div>
+            <div style="position:absolute; left:26px; top:6px; width:56px; height:24px; border-radius:8px; background: rgba(255,154,47,.95)"></div>
+            <div style="position:absolute; left:10px; top:28px; width:10px; height:10px; border-radius:999px; background:#1b1206"></div>
+            <div style="position:absolute; left:54px; top:28px; width:10px; height:10px; border-radius:999px; background:#1b1206"></div>
+          </div>
+          <div style="position:absolute; inset:0; border-radius:14px; border:1px dashed rgba(255,255,255,.18)"></div>
+        </div>
+        <div style="margin-top:.6rem; display:flex; gap:.45rem; align-items:center">
+          <span class="badge">Preparing app</span>
+          <span class="badge">Offline ready</span>
+          <span class="badge">Community submissions</span>
+        </div>
+      </div>
+
+      <div class="small" style="margin-top:.9rem">Tip: tap the logo 7 times to open Admin.</div>
+    </div>
+  </div>
+
+  <!-- Main App Shell -->
+  <div id="appShell">
+    <header>
+      <div class="container-app mx-auto navbar">
+        <div class="brand" id="brand" title="Tap for Home">
+          <div class="brandMark" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M3 7h11v9H3V7Z" stroke="#1b1206" stroke-width="2"/>
+              <path d="M14 10h4l3 3v3h-7v-6Z" fill="#1b1206" opacity=".15"/>
+              <path d="M14 10h4l3 3v3h-7v-6Z" stroke="#1b1206" stroke-width="2"/>
+              <circle cx="7" cy="18" r="2" fill="#1b1206"/>
+              <circle cx="17" cy="18" r="2" fill="#1b1206"/>
+            </svg>
+          </div>
+          <div class="brandTitle" id="appTitle">HGV <span>Destinations</span> Pro</div>
+        </div>
+        <div id="headerAction"></div>
+      </div>
+    </header>
+
+    <main class="container-app mx-auto" style="width:100%">
+      <div id="view"></div>
+    </main>
+
+    <footer class="tabbar">
+  <div class="bottomNav navButtons" id="navButtons">
+    <button class="navBtn active" data-route="home">
+      <span class="navIcon">🏠</span><span class="navLabel">Search</span>
+    </button>
+    <button class="navBtn" data-route="lst">
+      <span class="navIcon">🛣️</span><span class="navLabel">LST Routes</span>
+    </button>
+    <button class="navBtn" data-route="bridges">
+      <span class="navIcon">🌉</span><span class="navLabel">Low Bridges</span>
+    </button>
+    <button class="navBtn" data-route="settings">
+      <span class="navIcon">⚙️</span><span class="navLabel">Settings</span>
+    </button>
+  </div>
+</footer>
+  </div>
+
+  <style>
+    /* Splash truck animation */
+    #truck{ animation: drive 1.6s linear infinite; }
+    @keyframes drive {
+      0%{ transform: translateX(0); }
+      100%{ transform: translateX(650px); }
+    }
+  </style>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script type="module" src="js/app.js"></script>
+
+  </body>
+</html>

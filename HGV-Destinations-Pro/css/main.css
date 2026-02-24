@@ -1,0 +1,231 @@
+:root{
+  --bg:#05060a;
+  --bg2:#07080c;
+  --panel: rgba(18, 20, 28, 0.78);
+  --panel2: rgba(14, 16, 24, 0.72);
+  --text:#f4f6fb;
+  --muted:#9aa3b2;
+  --accent:#ff9f2f;
+  --accent2:#ffb15a;
+  --purple:#a76bff;
+  --purple2:#6d4bff;
+  --border: rgba(255,255,255,.07);
+  --shadow: 0 12px 44px rgba(0,0,0,.55);
+  --glow: 0 0 26px rgba(255,159,47,.16);
+  --radius: 18px;
+  --radius2: 14px;
+}
+html,body{
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(900px 600px at 18% 20%, rgba(170, 76, 255, .18), transparent 55%),
+    radial-gradient(800px 500px at 82% 78%, rgba(255, 159, 47, .10), transparent 52%),
+    radial-gradient(700px 420px at 70% 18%, rgba(90, 70, 255, .12), transparent 55%),
+    linear-gradient(180deg, var(--bg2), var(--bg));
+  color: var(--text);
+}
+body{
+  background: radial-gradient(1200px 700px at 20% 10%, rgba(255,154,47,.12), transparent 55%),
+              radial-gradient(900px 600px at 80% 20%, rgba(160,90,255,.18), transparent 60%),
+              linear-gradient(180deg, #070c16, var(--bg));
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  /* Space for the fixed bottom tab bar */
+  padding-bottom: 92px;
+}
+a{color:inherit}
+.container-app{max-width:1100px}
+.card{
+  background: linear-gradient(180deg, rgba(18,20,32,.92), rgba(10,11,18,.78));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.card-soft{
+  background: linear-gradient(180deg, rgba(18,22,38,.78), rgba(10,11,18,.72));
+  border: 1px solid rgba(167,107,255,0.10);
+  border-radius: var(--radius);
+}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:.5rem;
+  border-radius: 14px;
+  padding:.85rem 1rem;
+  font-weight: 700;
+  border: 1px solid rgba(255,255,255,.10);
+  transition: transform .08s ease, opacity .08s ease, background .15s ease;
+  user-select:none;
+}
+.btn:active{transform: translateY(1px); opacity:.95}
+.btn-primary{
+  background: linear-gradient(180deg, var(--accent2), var(--accent));
+  color:#1b1206;
+  border-color: rgba(0,0,0,.15);
+}
+.btn-ghost{
+  background: rgba(255,255,255,.05);
+}
+.input{
+  width:100%;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 14px;
+  padding: .85rem 1rem;
+  outline:none;
+}
+.input:focus{border-color: rgba(255,154,47,.55); box-shadow: 0 0 0 4px rgba(255,154,47,.12);}
+.badge{
+  display:inline-flex; align-items:center; gap:.35rem;
+  padding:.3rem .6rem;
+  border-radius: 999px;
+  font-size: .8rem;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  color: var(--muted);
+}
+.hr{height:1px;background:rgba(255,255,255,.10)}
+/* App layout */
+#appShell{min-height:100dvh; display:flex; flex-direction:column}
+header{
+  position: sticky; top:0; z-index:10;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(180deg, rgba(7,12,22,.82), rgba(7,12,22,.55));
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.navbar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding: .9rem 1rem;
+}
+.brand{
+  display:flex; align-items:center; gap:.7rem;
+  cursor:pointer;
+}
+.brandMark{
+  width:42px;height:42px;border-radius:14px;
+  background: linear-gradient(180deg, rgba(255,154,47,.95), rgba(255,154,47,.55));
+  display:grid; place-items:center;
+  box-shadow: 0 10px 24px rgba(255,154,47,.18);
+}
+.brandTitle{font-weight:900; letter-spacing:.2px}
+.brandTitle span{color:var(--accent)}
+main{flex:1}
+footer{
+  position: sticky; bottom:0; z-index:10;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(0deg, rgba(7,12,22,.82), rgba(7,12,22,.55));
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.bottomNav{
+  display:grid; grid-template-columns: repeat(4, 1fr);
+  gap:.35rem; padding:.55rem;
+}
+.navBtn{
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:.25rem;
+  padding:.65rem .5rem;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  color: var(--muted);
+}
+.navBtn.active{
+  color: var(--text);
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,154,47,.35);
+}
+.toast{
+  position: fixed; left: 50%; transform: translateX(-50%);
+  bottom: 88px; z-index: 50;
+  max-width: 520px;
+  padding:.9rem 1rem;
+  border-radius: 16px;
+  background: rgba(17,28,51,.92);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: var(--shadow);
+}
+.modalOverlay{
+  position:fixed; inset:0; z-index: 60;
+  background: rgba(0,0,0,.62);
+  display:flex; align-items:center; justify-content:center;
+  padding: 1rem;
+}
+.modal{
+  width:min(560px, 100%);
+  border-radius: 20px;
+  background: rgba(17,28,51,.98);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: var(--shadow);
+  overflow:hidden;
+}
+.modalHeader{padding:1rem 1rem .75rem}
+.modalBody{padding: 0 1rem 1rem}
+.modalFooter{padding: .85rem 1rem 1rem; display:flex; gap:.6rem; justify-content:flex-end}
+.hidden{display:none !important}
+
+.favMap{height:260px; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.08); position:relative; z-index:0;}
+
+/* LST routes map */
+.mapWrap{ position:relative; }
+.map{ height: 420px; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.08); position:relative; z-index:0; }
+
+.lstGrid{ display:grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 920px){
+  .lstGrid{ grid-template-columns: 420px 1fr; }
+}
+
+.lstRouteList{ display:flex; flex-direction:column; gap:.65rem; }
+.lstRouteToggle{ display:flex; gap:.75rem; align-items:flex-start; padding:.7rem .75rem; border-radius: 14px; border:1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.03); cursor:pointer; }
+.lstRouteToggle input{ margin-top:.25rem; }
+/* Prevent long route notes from overflowing the card */
+.lstRouteToggle > div{ min-width:0; }
+.lstRouteToggle .small{ white-space: normal; overflow-wrap:anywhere; line-height: 1.35; }
+
+.lstLegend{ display:flex; gap:.6rem; align-items:center; }
+.lstLegendRow{ display:flex; align-items:center; gap:.4rem; font-size: 12px; color: rgba(255,255,255,.8); }
+.lstLegendSwatch{ width:10px; height:10px; border-radius: 999px; box-shadow: 0 0 0 2px rgba(0,0,0,.25); }
+
+/* LST Routes: make the search card stand out */
+.goldGlow{
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  box-shadow:
+    0 0 0 1px rgba(245, 158, 11, 0.18),
+    0 0 28px rgba(245, 158, 11, 0.16);
+}
+
+/* LST route title: single line, no weird word-breaking */
+.lstRouteTitleOneLine{
+  font-weight: 900;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: normal;
+}
+
+.tabbar{
+  background: rgba(10,12,18,.70);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 18px;
+  box-shadow: 0 12px 44px rgba(0,0,0,.55);
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 16px;
+  width: min(980px, calc(100% - 2rem));
+  /* Ensure the nav stays above the map (Leaflet panes/controls can otherwise overlap) */
+  z-index: 5000;
+}
+.navBtn.active{ color: var(--accent); text-shadow: 0 0 10px rgba(255,159,47,.35); }
+
+/* Keep Leaflet UI under the app nav */
+.leaflet-top,
+.leaflet-bottom{
+  z-index: 20;
+}
+
+/* Keep the Leaflet container itself under the floating tabbar */
+.leaflet-container{
+  z-index: 0;
+}
+
+/* Add breathing room so content (especially the map) isn't hidden behind the floating tabbar */
+main{ padding-bottom: 110px; }
