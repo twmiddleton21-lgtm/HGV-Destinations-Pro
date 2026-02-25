@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "bridges": [
+    {
+      "id": "seed-example-1",
+      "name": "Example Low Bridge",
+      "road": "A123",
+      "lat": 52.2053,
+      "lng": 0.1218,
+      "maxheight_raw": "4.2 m",
+      "height_m": 4.2,
+      "height_ft": 13,
+      "height_in": 9,
+      "source": "seed",
+      "updatedAt": 0
+    }
+  ]
+}

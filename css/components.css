@@ -1,0 +1,91 @@
+/* small UI helpers */
+.listItem{
+  display:flex; gap:.9rem; align-items:flex-start;
+  padding: .9rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.04);
+}
+.listItem:hover{background: rgba(255,255,255,.06)}
+.thumb{
+  width:64px;height:64px;border-radius: 16px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.08);
+  overflow:hidden; flex:0 0 auto;
+}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.h1{font-size: 1.7rem; font-weight: 950; letter-spacing: -0.02em}
+.h2{font-size: 1.2rem; font-weight: 900}
+.small{font-size:.9rem; color: var(--muted)}
+.grid2{display:grid; gap:.8rem}
+@media(min-width:900px){.grid2{grid-template-columns: 1.1fr .9fr}}
+
+/* === Map overlay UI === */
+.favMapWrap{ position:relative; }
+.locateFab{
+  position:absolute;
+  right:14px;
+  bottom:14px;
+  width:46px;
+  height:46px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(16,18,22,.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.35);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index: 1200; /* above leaflet controls */
+}
+.locateFab:hover{ background:rgba(20,22,28,.9); }
+.locateFab.active{ border-color: rgba(26,115,232,.65); box-shadow: 0 10px 28px rgba(26,115,232,.18); }
+.locateFabIcon{ font-size:20px; line-height:1; color:rgba(255,255,255,.92); }
+
+/* === User location (Google/Apple style) === */
+.user-location-marker{ position:relative; width:22px; height:22px; }
+.user-location-dot{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:14px;
+  height:14px;
+  transform:translate(-50%,-50%);
+  background:#1a73e8;
+  border-radius:50%;
+  border:3px solid #fff;
+  box-shadow:
+    0 0 0 2px rgba(26,115,232,.22),
+    0 2px 8px rgba(0,0,0,.35);
+}
+.user-location-pulse{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:22px;
+  height:22px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:rgba(26,115,232,.22);
+  animation: userLocPulse 2s infinite;
+}
+@keyframes userLocPulse{
+  0%{ transform:translate(-50%,-50%) scale(.7); opacity:.85; }
+  70%{ transform:translate(-50%,-50%) scale(2.2); opacity:0; }
+  100%{ opacity:0; }
+}
+.user-location-heading{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:0;
+  height:0;
+  transform: translate(-50%,-50%) rotate(0deg);
+  transform-origin: 50% calc(50% + 1px);
+  border-left:7px solid transparent;
+  border-right:7px solid transparent;
+  border-bottom:14px solid rgba(26,115,232,.9);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.35));
+  opacity:.9;
+}
